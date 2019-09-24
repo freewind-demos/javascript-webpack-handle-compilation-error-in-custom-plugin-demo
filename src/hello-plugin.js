@@ -1,15 +1,13 @@
 class HelloWorldPlugin {
-    constructor(options) {
-        this.options = options
-    }
+  constructor(options) {
+    this.options = options
+  }
 
-    apply(compiler) {
-        compiler.hooks.done.tap('HelloWorldPlugin', () => {
-            console.log('========= HelloWorldPlugin ==========')
-            console.log('Hello, ' + this.options.name + '!')
-            console.log('-------------------------------------')
-        })
-    }
+  apply(compiler) {
+    compiler.hooks.compilation.tap('HelloWorldPlugin', (compilation) => {
+      compilation.errors.push(new Error(`Custom error from plugin, with options: ${JSON.stringify(this.options)}`));
+    })
+  }
 }
 
 module.exports = HelloWorldPlugin

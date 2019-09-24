@@ -1,9 +1,9 @@
-JavaScript Webpack Custom Plugin Demo
-=====================================
+JavaScript Webpack Handle Compilation Error in Custom Plugin Demo
+=================================================================
 
-Webpack的plugin看起来还有点复杂，这里的例子只是一个最简单的Hello World。
+在compilation hooks里直接throw Error只能导致webpack失败，但不会显示具体原因。
 
-如果想写一些更复杂的例子，还需要理解webpack的`compiler`和`compilation`。
+我们需要使用compilation.errors来处理。
 
 ```
 npm install
@@ -13,14 +13,5 @@ npm run demo
 将输出:
 
 ```
-========= HelloWorldPlugin ==========
-Hello, webpack!
--------------------------------------
+ERROR in Custom error from plugin, with options: {"name":"webpack"}
 ```
-
-说明我们的Plugin被成功调用。
-
-Resources
----------
-
-- Write a plugin: <https://webpack.docschina.org/contribute/writing-a-plugin/>
